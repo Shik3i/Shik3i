@@ -8,9 +8,7 @@
 [![Go](https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=go&logoColor=white)](https://go.dev/)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](https://developer.mozilla.org/docs/Web/HTML)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](https://developer.mozilla.org/docs/Web/CSS)
-
-[github@koalastuff.net](mailto:github@koalastuff.net)
-
-[![Support me on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/koaladev)
+[![Email](https://img.shields.io/badge/Email-github%40koalastuff.net-555555?style=flat-square)](mailto:github@koalastuff.net)
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-koaladev-FF5E5B?style=flat-square&logo=ko-fi&logoColor=white)](https://ko-fi.com/koaladev)
 
 ![contribution snake](https://raw.githubusercontent.com/Shik3i/Shik3i/output/snake.svg)
