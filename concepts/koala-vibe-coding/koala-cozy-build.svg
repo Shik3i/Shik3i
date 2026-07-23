@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="240" viewBox="0 0 840 240" role="img" aria-labelledby="title desc">
+  <title id="title">Koala Cozy Build</title>
+  <desc id="desc">An animated koala works at a warm desk while an idea becomes a small open-source release.</desc>
+
+  <defs>
+    <linearGradient id="cozy-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7efe5"/>
+      <stop offset="1" stop-color="#ead8c4"/>
+    </linearGradient>
+    <filter id="cozy-shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#6b4a3a" flood-opacity=".18"/>
+    </filter>
+  </defs>
+
+  <rect width="840" height="240" rx="18" fill="url(#cozy-bg)"/>
+  <circle cx="735" cy="47" r="25" fill="#f3b85b" opacity=".7">
+    <animate attributeName="opacity" values=".55;.8;.55" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <path d="M0 194 Q145 174 290 194 T580 194 T870 194 V240 H0 Z" fill="#d8c2a9"/>
+
+  <g id="plant" transform="translate(80 111)">
+    <path d="M24 70 C18 44 12 25 3 5 M25 70 C31 40 44 21 59 5 M24 70 C24 43 25 24 26 0" fill="none" stroke="#59865b" stroke-width="6" stroke-linecap="round"/>
+    <ellipse cx="4" cy="8" rx="13" ry="7" fill="#6fa66f" transform="rotate(34 4 8)"/>
+    <ellipse cx="56" cy="9" rx="14" ry="8" fill="#6fa66f" transform="rotate(-35 56 9)"/>
+    <ellipse cx="27" cy="4" rx="8" ry="14" fill="#7eb47d"/>
+    <path d="M7 65 H46 L40 95 H13 Z" fill="#bd765a"/>
+  </g>
+
+  <g id="screen" filter="url(#cozy-shadow)">
+    <rect x="420" y="45" width="280" height="132" rx="12" fill="#614d45"/>
+    <rect x="430" y="55" width="260" height="112" rx="7" fill="#fffaf2"/>
+    <text x="450" y="82" fill="#8a6d5c" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">tiny-tool.pipeline</text>
+
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="700">
+      <text x="450" y="116" fill="#c76d52" opacity="0">
+        idea
+        <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.03;.2;.24;1" dur="8s" repeatCount="indefinite"/>
+      </text>
+      <text x="450" y="116" fill="#8c6fb0" opacity="0">
+        vibing...
+        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.23;.27;.47;.51;1" dur="8s" repeatCount="indefinite"/>
+      </text>
+      <text x="450" y="116" fill="#4d89a8" opacity="0">
+        vibe coded
+        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.5;.54;.72;.76;1" dur="8s" repeatCount="indefinite"/>
+      </text>
+      <text x="450" y="116" fill="#4f8a5b" opacity="0">
+        released
+        <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.75;.79;.96;1" dur="8s" repeatCount="indefinite"/>
+      </text>
+    </g>
+
+    <g transform="translate(450 138)">
+      <circle cx="0" cy="0" r="6" fill="#c76d52"/>
+      <rect x="10" y="-3" width="42" height="6" rx="3" fill="#dcb49e"/>
+      <circle cx="70" cy="0" r="6" fill="#8c6fb0">
+        <animate attributeName="fill" values="#d9c9df;#8c6fb0;#8c6fb0" keyTimes="0;.26;1" dur="8s" repeatCount="indefinite"/>
+      </circle>
+      <rect x="80" y="-3" width="42" height="6" rx="3" fill="#c9b7d5"/>
+      <circle cx="140" cy="0" r="6" fill="#4d89a8">
+        <animate attributeName="fill" values="#c7d8df;#c7d8df;#4d89a8;#4d89a8" keyTimes="0;.5;.53;1" dur="8s" repeatCount="indefinite"/>
+      </circle>
+      <rect x="150" y="-3" width="42" height="6" rx="3" fill="#abc8d5"/>
+      <circle cx="210" cy="0" r="6" fill="#4f8a5b">
+        <animate attributeName="fill" values="#cadacb;#cadacb;#4f8a5b;#4f8a5b" keyTimes="0;.75;.78;1" dur="8s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+    <rect x="535" y="177" width="50" height="18" rx="3" fill="#715b50"/>
+    <rect x="500" y="193" width="120" height="7" rx="3.5" fill="#8b7164"/>
+  </g>
+
+  <rect x="160" y="198" width="600" height="17" rx="8.5" fill="#9e674e"/>
+  <rect x="190" y="212" width="17" height="28" fill="#754936"/>
+  <rect x="713" y="212" width="17" height="28" fill="#754936"/>
+
+  <g id="koala" filter="url(#cozy-shadow)">
+    <ellipse cx="309" cy="180" rx="68" ry="43" fill="#78838a"/>
+    <circle cx="251" cy="96" r="34" fill="#87939a"/>
+    <circle cx="355" cy="96" r="34" fill="#87939a"/>
+    <circle cx="251" cy="96" r="20" fill="#e6afb1"/>
+    <circle cx="355" cy="96" r="20" fill="#e6afb1"/>
+    <ellipse cx="303" cy="119" rx="64" ry="61" fill="#aeb8bc"/>
+    <ellipse cx="303" cy="139" rx="25" ry="19" fill="#f5eee7"/>
+    <ellipse cx="303" cy="130" rx="18" ry="14" fill="#3c4144"/>
+    <path d="M291 147 Q303 154 315 147" fill="none" stroke="#3c4144" stroke-width="4" stroke-linecap="round"/>
+    <ellipse cx="278" cy="111" rx="6" ry="8" fill="#303538">
+      <animate attributeName="ry" values="8;8;1;8;8" keyTimes="0;.38;.41;.44;1" dur="5.3s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="328" cy="111" rx="6" ry="8" fill="#303538">
+      <animate attributeName="ry" values="8;8;1;8;8" keyTimes="0;.38;.41;.44;1" dur="5.3s" repeatCount="indefinite"/>
+    </ellipse>
+    <path d="M357 162 Q383 171 405 190" fill="none" stroke="#aeb8bc" stroke-width="16" stroke-linecap="round">
+      <animateTransform attributeName="transform" type="rotate" values="-2 357 162;4 357 162;-2 357 162" dur=".55s" repeatCount="indefinite"/>
+    </path>
+    <path d="M252 163 Q283 174 301 190" fill="none" stroke="#aeb8bc" stroke-width="16" stroke-linecap="round">
+      <animateTransform attributeName="transform" type="rotate" values="4 252 163;-3 252 163;4 252 163" dur=".55s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <path d="M300 184 H427 L452 201 H278 Z" fill="#6e5a51"/>
+  <g fill="#d9c7bb">
+    <rect x="310" y="188" width="17" height="5" rx="2"/>
+    <rect x="332" y="188" width="17" height="5" rx="2"/>
+    <rect x="354" y="188" width="17" height="5" rx="2"/>
+    <rect x="376" y="188" width="17" height="5" rx="2"/>
+    <rect x="398" y="188" width="17" height="5" rx="2"/>
+  </g>
+
+  <g id="tea">
+    <rect x="665" y="173" width="39" height="27" rx="6" fill="#6d9f77"/>
+    <path d="M704 179 Q721 177 719 190 Q716 198 704 196" fill="none" stroke="#6d9f77" stroke-width="6"/>
+    <path d="M678 168 C670 158 688 154 680 143" fill="none" stroke="#9e806f" stroke-width="3" stroke-linecap="round">
+      <animateTransform attributeName="transform" type="translate" values="0 5;4 -4;0 -12" dur="2.6s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;.5;0" dur="2.6s" repeatCount="indefinite"/>
+    </path>
+  </g>
+</svg>

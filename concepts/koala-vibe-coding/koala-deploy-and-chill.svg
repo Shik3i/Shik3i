@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="240" viewBox="0 0 840 240" role="img" aria-labelledby="title desc">
+  <title id="title">Koala Deploy and Chill</title>
+  <desc id="desc">An animated koala reclines with a laptop while a build finishes, deploys, and switches to chill mode.</desc>
+
+  <defs>
+    <linearGradient id="chill-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#151725"/>
+      <stop offset="1" stop-color="#28324a"/>
+    </linearGradient>
+    <linearGradient id="chair" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6d5c91"/>
+      <stop offset="1" stop-color="#493d68"/>
+    </linearGradient>
+    <filter id="laptop-glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="#78dce8" flood-opacity=".45"/>
+    </filter>
+  </defs>
+
+  <rect width="840" height="240" rx="18" fill="url(#chill-bg)"/>
+  <circle cx="724" cy="53" r="29" fill="#f5e6a7"/>
+  <circle cx="737" cy="44" r="29" fill="#20283b"/>
+  <g fill="#9ac8ff">
+    <circle cx="72" cy="54" r="1.2"/>
+    <circle cx="143" cy="27" r="1.5"/>
+    <circle cx="205" cy="72" r="1"/>
+    <circle cx="660" cy="32" r="1.2"/>
+    <circle cx="784" cy="91" r="1.4"/>
+  </g>
+  <path d="M0 206 Q180 184 355 205 T700 203 T900 201 V240 H0 Z" fill="#10141f"/>
+
+  <g id="status-card">
+    <rect x="515" y="45" width="245" height="116" rx="12" fill="#0d1117" stroke="#49536b" stroke-width="2"/>
+    <circle cx="532" cy="60" r="3" fill="#ff6188"/>
+    <circle cx="543" cy="60" r="3" fill="#ffd866"/>
+    <circle cx="554" cy="60" r="3" fill="#a9dc76"/>
+    <text x="532" y="87" fill="#727c99" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">koalastuff/night-shift</text>
+
+    <text x="532" y="116" fill="#78dce8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" opacity="0">
+      building...
+      <animate attributeName="opacity" values="1;1;0;0;0" keyTimes="0;.31;.35;.99;1" dur="7s" repeatCount="indefinite"/>
+    </text>
+    <text x="532" y="116" fill="#a9dc76" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" opacity="0">
+      deployed
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.34;.38;.62;.66;1" dur="7s" repeatCount="indefinite"/>
+    </text>
+    <text x="532" y="116" fill="#ffd866" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" opacity="0">
+      chill mode
+      <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.65;.69;.96;1" dur="7s" repeatCount="indefinite"/>
+    </text>
+
+    <rect x="532" y="134" width="192" height="7" rx="3.5" fill="#2b3142"/>
+    <rect x="532" y="134" width="0" height="7" rx="3.5" fill="#78dce8">
+      <animate attributeName="width" values="0;192;192;0" keyTimes="0;.38;.88;1" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="fill" values="#78dce8;#78dce8;#a9dc76;#ffd866" keyTimes="0;.37;.65;1" dur="7s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <g id="chair-and-koala">
+    <animateTransform attributeName="transform" type="rotate" values="-1 300 194;1.2 300 194;-1 300 194" dur="4.5s" repeatCount="indefinite"/>
+
+    <path d="M145 193 Q150 89 235 77 Q330 64 402 144 L420 201 Z" fill="url(#chair)"/>
+    <path d="M165 192 Q176 112 243 99 Q322 83 382 148 L395 192 Z" fill="#8371a8"/>
+    <path d="M152 195 H422" stroke="#342c4e" stroke-width="12" stroke-linecap="round"/>
+    <path d="M219 203 L195 232 M351 203 L378 232" stroke="#342c4e" stroke-width="10" stroke-linecap="round"/>
+
+    <circle cx="229" cy="103" r="33" fill="#77828f"/>
+    <circle cx="325" cy="103" r="33" fill="#77828f"/>
+    <circle cx="229" cy="103" r="19" fill="#dca2ae"/>
+    <circle cx="325" cy="103" r="19" fill="#dca2ae"/>
+    <ellipse cx="277" cy="127" rx="60" ry="57" fill="#a8b2bd"/>
+    <ellipse cx="277" cy="146" rx="24" ry="18" fill="#e6edf3"/>
+    <ellipse cx="277" cy="137" rx="17" ry="13" fill="#292d36"/>
+    <path d="M266 153 Q277 160 288 153" fill="none" stroke="#292d36" stroke-width="4" stroke-linecap="round"/>
+    <path d="M251 120 Q259 115 267 120" fill="none" stroke="#292d36" stroke-width="4" stroke-linecap="round"/>
+    <path d="M288 120 Q296 115 304 120" fill="none" stroke="#292d36" stroke-width="4" stroke-linecap="round"/>
+    <ellipse cx="294" cy="180" rx="78" ry="37" fill="#75808c" transform="rotate(8 294 180)"/>
+
+    <g id="laptop" filter="url(#laptop-glow)" transform="rotate(7 374 170)">
+      <path d="M330 118 H448 L435 181 H341 Z" fill="#222838"/>
+      <rect x="340" y="128" width="97" height="43" rx="5" fill="#15242d"/>
+      <circle cx="389" cy="150" r="10" fill="none" stroke="#78dce8" stroke-width="3">
+        <animateTransform attributeName="transform" type="rotate" from="0 389 150" to="360 389 150" dur="2s" repeatCount="indefinite"/>
+        <animate attributeName="stroke-dasharray" values="3 10;12 5;3 10" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <path d="M337 181 H439 L457 192 H320 Z" fill="#3d465b"/>
+    </g>
+
+    <path d="M324 165 Q346 161 359 151" fill="none" stroke="#a8b2bd" stroke-width="16" stroke-linecap="round">
+      <animateTransform attributeName="transform" type="rotate" values="-2 324 165;5 324 165;-2 324 165" dur=".8s" repeatCount="indefinite"/>
+    </path>
+    <circle cx="359" cy="151" r="8" fill="#75808c"/>
+  </g>
+
+  <g id="side-table">
+    <ellipse cx="675" cy="189" rx="78" ry="14" fill="#4b3c46"/>
+    <rect x="666" y="189" width="18" height="43" fill="#342a31"/>
+    <ellipse cx="675" cy="232" rx="43" ry="7" fill="#342a31"/>
+    <rect x="643" y="156" width="39" height="29" rx="6" fill="#ff6188"/>
+    <path d="M682 162 Q700 160 698 174 Q695 183 682 180" fill="none" stroke="#ff6188" stroke-width="6"/>
+    <path d="M655 151 C648 141 665 137 657 126" fill="none" stroke="#c8d3f5" stroke-width="3" stroke-linecap="round">
+      <animateTransform attributeName="transform" type="translate" values="0 6;4 -3;0 -12" dur="2.8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;.55;0" dur="2.8s" repeatCount="indefinite"/>
+    </path>
+  </g>
+</svg>
