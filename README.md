@@ -1,6 +1,6 @@
 # Hi, I'm Timo
 
-.NET & C# developer from Germany, vibe coding free, privacy-first open-source tools for real-world annoyances at [KoalaStuff](https://koalastuff.net).
+By day, I'm a .NET & C# developer. By night, I vibe code free, privacy-first open-source tools for annoyances I run into myself, then share them through [KoalaStuff](https://koalastuff.net) in case they help someone else too.
 
 [![.NET](https://img.shields.io/badge/.NET-512BD4?style=flat-square&logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
 [![C%23](https://img.shields.io/badge/C%23-512BD4?style=flat-square&logo=csharp&logoColor=white)](https://learn.microsoft.com/dotnet/csharp/)
