@@ -1,5 +1,7 @@
 # Hi, I'm Timo
 
+.NET & C# developer from Germany, vibe coding free, privacy-first open-source tools for real-world annoyances at [KoalaStuff](https://koalastuff.net).
+
 [![.NET](https://img.shields.io/badge/.NET-512BD4?style=flat-square&logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
 [![C%23](https://img.shields.io/badge/C%23-512BD4?style=flat-square&logo=csharp&logoColor=white)](https://learn.microsoft.com/dotnet/csharp/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
