@@ -1,16 +1,17 @@
-## Hi there 👋
+# Hi, I'm Shik3i 👋
 
-<!--
-**Shik3i/Shik3i** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+I build privacy-first software, browser tools, and small experiments that are fun to use.
 
-Here are some ideas to get you started:
+## Contribution Snake
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+<picture>
+  <img src="https://raw.githubusercontent.com/Shik3i/Shik3i/output/snake.svg" width="100%" alt="A Snake game moving through Shik3i's GitHub contribution graph">
+</picture>
+
+The snake eats the contribution graph cell by cell. It is generated automatically from my GitHub activity.
+
+## Featured
+
+- [snake-and-commits](https://github.com/dahan8473/snake-and-commits): a real, winnable Snake game built from a GitHub contribution graph.
+- [KoalaSync](https://github.com/Shik3i/KoalaSync): privacy-first synchronized video playback for browser tabs.
+
