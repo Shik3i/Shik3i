@@ -50,7 +50,7 @@ jobs:
       - name: Generate Breakout graph
         uses: cyprieng/github-breakout@60c43dca3a1361fbc9fb9bb533b5193296345c4f
         with:
-          github_user_name: ${{ github.repository_owner }}
+          github_username: ${{ github.repository_owner }}
           output_path: dist
 
       - name: Check out Contribution Crawl
