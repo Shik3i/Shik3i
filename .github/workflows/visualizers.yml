@@ -24,7 +24,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf dist profile-3d-contrib crawl
+          rm -rf dist profile-3d-contrib crawl trophy
           mkdir -p dist/profile-3d-contrib
 
       - name: Generate contribution snake
@@ -97,6 +97,57 @@ jobs:
           set -euo pipefail
           cp -R profile-3d-contrib/. dist/profile-3d-contrib/
 
+      - name: Generate GitHub Metrics
+        uses: lowlighter/metrics@366f8b9dfe3a59656c67d5dcad9950f59c9bc96d # pinned 2026-07-31
+        with:
+          filename: dist/metrics.svg
+          token: ${{ github.token }}
+          template: classic
+          config_timezone: Europe/Berlin
+
+      - name: Check out GitHub Profile Trophy
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.0.2
+        with:
+          repository: ryo-ma/github-profile-trophy
+          ref: e3c89df995e92e67cdd4b2acaab9d974583dc1f7
+          path: trophy
+
+      - name: Set up Deno for GitHub Profile Trophy
+        uses: denoland/setup-deno@11b63cf76cfcafb4e43f97b6cad24d8e8438f62d # v1
+        with:
+          deno-version: v1.x
+
+      - name: Generate GitHub Profile Trophy
+        shell: bash
+        env:
+          GITHUB_TOKEN1: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          deno run --allow-net --allow-env --allow-read --allow-write trophy/render_svg.ts "${{ github.repository_owner }}" dist/github-profile-trophy.svg flat
+
+      - name: Generate Maeul in the Sky
+        uses: t1seo/maeul-in-the-sky@e308d35ed2311502f44e557a93ab167de9922f5b # pinned 2026-07-31
+        with:
+          github_token: ${{ github.token }}
+          output_dir: ./dist
+
+      - name: Generate ghstats cards
+        uses: tiennm99/ghstats@9f7c16f8357e8a26eada9a9652db7701c3ec5753 # pinned 2026-07-31
+        with:
+          user: ${{ github.repository_owner }}
+          token: ${{ github.token }}
+          out: dist/ghstats
+          themes: dracula,github_dark,tokyonight
+          include_private: 'false'
+          commit_changes: 'false'
+
+      - name: Generate GitHub Gravity
+        uses: flycran/github-gravity@ea8d6643dfd97df88c2b8d7505f713df91cc45b8 # pinned 2026-07-31
+        with:
+          username: ${{ github.repository_owner }}
+          text: ${{ github.repository_owner }}
+          output-path: dist/github-gravity.svg
+
       - name: Verify generated assets
         shell: bash
         run: |
@@ -110,6 +161,14 @@ jobs:
           test -s dist/contribution-crawl-light.svg
           test -s dist/contribution-crawl-dark.svg
           test -s dist/profile-3d-contrib/profile-night-rainbow.svg
+          test -s dist/metrics.svg
+          test -s dist/github-profile-trophy.svg
+          test -s dist/maeul-in-the-sky-dark.svg
+          test -s dist/maeul-in-the-sky-light.svg
+          test -s dist/ghstats/dracula/stats.svg
+          test -s dist/ghstats/github_dark/stats.svg
+          test -s dist/ghstats/tokyonight/stats.svg
+          test -s dist/github-gravity.svg
           find dist -type f -maxdepth 3 -print
 
       - name: Publish all assets to output branch
