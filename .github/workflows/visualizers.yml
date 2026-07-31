@@ -1,67 +1,121 @@
-name: Build Profile Visualizers
+name: Build profile visualizers
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: '17 0 * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: profile-visualizers
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v3
+      - name: Check out profile repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.0.2
 
-      - name: Create build output directory
-        run: mkdir -p dist/profile-3d-contrib
+      - name: Prepare output directory
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf dist profile-3d-contrib crawl
+          mkdir -p dist/profile-3d-contrib
 
-      # 1. Platane Contribution Grid Snake
-      - name: Generate Contribution Snake
-        uses: Platane/snk@v3
+      - name: Generate contribution snake
+        uses: Platane/snk@d8f6715049803e982ee5ff501b6b9b7d5deeb09b # v3.3.0
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
-            dist/snake.svg
-            dist/snake-dark.svg?palette=github-dark
+            dist/github-snake.svg
+            dist/github-snake-dark.svg?palette=github-dark
 
-      # 2. Arcade Pac-Man Contribution Graph
-      - name: Generate Pac-Man Graph
-        uses: abozanona/pacman-contribution-graph@v1.0.0
+      - name: Generate snake and commits
+        uses: dahan8473/snake-and-commits@c55d1f1668e849195f395a9d93c56e74b68aaac2 # v1
+        with:
+          github_user: ${{ github.repository_owner }}
+          output: dist/snake.svg
+          theme: green
+
+      - name: Generate Pac-Man graph
+        uses: abozanona/pacman-contribution-graph@d258e3fb01511c1ff4fe6418408ede37b2ad4935
         with:
           github_user_name: ${{ github.repository_owner }}
-          output: dist/pacman.svg
 
-      # 3. GitHub Breakout Animation
-      - name: Generate Breakout Animation
-        uses: cyprieng/github-breakout@v1
+      - name: Generate Breakout graph
+        uses: cyprieng/github-breakout@60c43dca3a1361fbc9fb9bb533b5193296345c4f
         with:
           github_user_name: ${{ github.repository_owner }}
-          output: dist/github-breakout.svg
+          output_path: dist
 
-      # 4. Contribution Crawl (Dungeon Crawler)
+      - name: Check out Contribution Crawl
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.0.2
+        with:
+          repository: MaskiCoding/Contribution-Crawl
+          ref: 6010bdeffccd24d871600b9dfa9f9e75877d3af9
+          path: crawl
+
+      - name: Set up Node.js
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.1.0
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: crawl/package-lock.json
+
       - name: Generate Contribution Crawl
-        uses: MaskiCoding/Contribution-Crawl@v1
-        with:
-          github_user_name: ${{ github.repository_owner }}
-          output: dist/contribution-crawl.svg
-
-      # 5. GitHub 3D Isometric Contribution Calendar
-      - name: Generate 3D Contribution Calendar
-        uses: yoshi389111/github-profile-3d-contrib@0.7.1
+        working-directory: crawl
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --ignore-scripts
+          npm run build
+          node dist/index.js "${{ github.repository_owner }}" ..
+
+      - name: Collect Contribution Crawl assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          mv contribution-crawl-light.svg dist/
+          mv contribution-crawl-dark.svg dist/
+
+      - name: Generate 3D contribution calendar
+        uses: yoshi389111/github-profile-3d-contrib@7d95e7d4cdc028dd1e1cbd957d65f35efb12ae39
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
           USERNAME: ${{ github.repository_owner }}
 
-      - name: Copy 3D Contrib to dist
-        run: cp -r profile-3d-contrib/* dist/profile-3d-contrib/ || true
+      - name: Collect 3D assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp -R profile-3d-contrib/. dist/profile-3d-contrib/
 
-      # Publish all generated SVGs to output branch
-      - name: Deploy SVGs to output branch
-        uses: crazy-max/ghaction-github-pages@v31
+      - name: Verify generated assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s dist/github-snake.svg
+          test -s dist/github-snake-dark.svg
+          test -s dist/snake.svg
+          test -s dist/pacman-contribution-graph.svg
+          test -s dist/light.svg
+          test -s dist/dark.svg
+          test -s dist/contribution-crawl-light.svg
+          test -s dist/contribution-crawl-dark.svg
+          test -s dist/profile-3d-contrib/profile-night-rainbow.svg
+          find dist -type f -maxdepth 3 -print
+
+      - name: Publish all assets to output branch
+        uses: crazy-max/ghaction-github-pages@1d6ee9b181a81033a16bd707a1401afa978daab4 # v4.2.0
         with:
           target_branch: output
           build_dir: dist
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
