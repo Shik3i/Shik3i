@@ -1,0 +1,67 @@
+name: Build Profile Visualizers
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Create build output directory
+        run: mkdir -p dist/profile-3d-contrib
+
+      # 1. Platane Contribution Grid Snake
+      - name: Generate Contribution Snake
+        uses: Platane/snk@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/snake.svg
+            dist/snake-dark.svg?palette=github-dark
+
+      # 2. Arcade Pac-Man Contribution Graph
+      - name: Generate Pac-Man Graph
+        uses: abozanona/pacman-contribution-graph@v1.0.0
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          output: dist/pacman.svg
+
+      # 3. GitHub Breakout Animation
+      - name: Generate Breakout Animation
+        uses: cyprieng/github-breakout@v1
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          output: dist/github-breakout.svg
+
+      # 4. Contribution Crawl (Dungeon Crawler)
+      - name: Generate Contribution Crawl
+        uses: MaskiCoding/Contribution-Crawl@v1
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          output: dist/contribution-crawl.svg
+
+      # 5. GitHub 3D Isometric Contribution Calendar
+      - name: Generate 3D Contribution Calendar
+        uses: yoshi389111/github-profile-3d-contrib@0.7.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USERNAME: ${{ github.repository_owner }}
+
+      - name: Copy 3D Contrib to dist
+        run: cp -r profile-3d-contrib/* dist/profile-3d-contrib/ || true
+
+      # Publish all generated SVGs to output branch
+      - name: Deploy SVGs to output branch
+        uses: crazy-max/ghaction-github-pages@v31
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
