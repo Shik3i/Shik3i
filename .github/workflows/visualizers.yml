@@ -152,23 +152,31 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test -s dist/github-snake.svg
-          test -s dist/github-snake-dark.svg
-          test -s dist/snake.svg
-          test -s dist/pacman-contribution-graph.svg
-          test -s dist/light.svg
-          test -s dist/dark.svg
-          test -s dist/contribution-crawl-light.svg
-          test -s dist/contribution-crawl-dark.svg
-          test -s dist/profile-3d-contrib/profile-night-rainbow.svg
-          test -s dist/metrics.svg
-          test -s dist/github-profile-trophy.svg
-          test -s dist/maeul-in-the-sky-dark.svg
-          test -s dist/maeul-in-the-sky-light.svg
-          test -s dist/ghstats/dracula/stats.svg
-          test -s dist/ghstats/github_dark/stats.svg
-          test -s dist/ghstats/tokyonight/stats.svg
-          test -s dist/github-gravity.svg
+          for asset in \
+            dist/github-snake.svg \
+            dist/github-snake-dark.svg \
+            dist/snake.svg \
+            dist/pacman-contribution-graph.svg \
+            dist/light.svg \
+            dist/dark.svg \
+            dist/contribution-crawl-light.svg \
+            dist/contribution-crawl-dark.svg \
+            dist/profile-3d-contrib/profile-night-rainbow.svg \
+            dist/metrics.svg \
+            dist/github-profile-trophy.svg \
+            dist/maeul-in-the-sky-dark.svg \
+            dist/maeul-in-the-sky-light.svg \
+            dist/ghstats/dracula/stats.svg \
+            dist/ghstats/github_dark/stats.svg \
+            dist/ghstats/tokyonight/stats.svg \
+            dist/github-gravity.svg; do
+            if [[ ! -s "$asset" ]]; then
+              echo "Missing or empty generated asset: $asset"
+              ls -l "$asset" || true
+              exit 1
+            fi
+            echo "Verified $asset ($(wc -c < "$asset") bytes)"
+          done
 
       - name: Publish all assets to output branch
         uses: crazy-max/ghaction-github-pages@1d6ee9b181a81033a16bd707a1401afa978daab4 # v4.2.0
